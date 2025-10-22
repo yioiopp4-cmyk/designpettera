@@ -79,7 +79,10 @@
 
 .top-losers .card-body,
 .top-gainers .card-body {
-    min-height: 150px !important;
+    min-height: auto !important;
+    padding-bottom: 8px !important;
+    gap: 6px !important;
+    justify-content: flex-start !important;
 }
 
 .rank {
@@ -132,22 +135,22 @@
 
 /* شاخص ترس و طمع - بهبود یافته */
 .fear-greed-box {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
-    padding: 24px !important;
-    min-height: 280px !important;
+    background: #fff !important;
+    padding: 12px !important;
+    min-height: 140px !important;
 }
 
 .fear-greed-box h3 {
-    font-size: 16px !important;
+    font-size: 0.85rem !important;
     font-weight: 700 !important;
-    color: white !important;
-    margin-bottom: 20px !important;
+    color: #0f172a !important;
+    margin-bottom: 8px !important;
 }
 
 .fear-greed-gauge {
     position: relative !important;
     width: 100% !important;
-    height: 180px !important;
+    height: 100px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -155,52 +158,44 @@
 }
 
 .gauge-value {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    font-size: 52px !important;
+    position: static !important;
+    transform: none !important;
+    font-size: 1.4rem !important;
     font-weight: 900 !important;
-    color: white !important;
-    z-index: 10 !important;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    color: #0f172a !important;
+    z-index: 1 !important;
+    text-shadow: none !important;
 }
 
 .gauge-label {
-    position: absolute !important;
-    bottom: 20px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    font-size: 20px !important;
+    position: static !important;
+    font-size: 0.85rem !important;
     font-weight: 700 !important;
-    color: white !important;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    color: #64748b !important;
 }
 
 /* نوار‌های گیج */
 .gauge-bars {
-    position: absolute !important;
-    width: 140px !important;
-    height: 140px !important;
-    border-radius: 50% !important;
-    background: conic-gradient(
-        from 180deg,
-        #dc2626 0deg 72deg,
-        #f59e0b 72deg 144deg,
-        #fbbf24 144deg 216deg,
-        #84cc16 216deg 288deg,
-        #16a34a 288deg 360deg
-    ) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+    position: relative !important;
+    width: 170px !important;
+    height: 80px !important;
+    border-radius: 100px 100px 0 0 !important;
+    background: none !important;
+    transform: scaleY(-1) !important;
+    display: flex !important;
+    gap: 4px !important;
+    overflow: hidden !important;
+    margin-bottom: 6px !important;
 }
 
 /* فلش اشاره‌گر */
 .gauge-pointer {
     position: absolute !important;
-    width: 80px !important;
-    height: 80px !important;
-    z-index: 5 !important;
-    transform-origin: center !important;
+    width: 2px !important;
+    height: 60px !important;
+    background: #0f172a !important;
+    transform-origin: bottom center !important;
+    top: 20px !important;
     transition: transform 0.5s ease !important;
 }
 
@@ -209,12 +204,10 @@
     height: 0 !important;
     border-left: 6px solid transparent !important;
     border-right: 6px solid transparent !important;
-    border-bottom: 70px solid rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 12px solid #0f172a !important;
     position: absolute !important;
     top: -10px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) !important;
+    left: -6px !important;
 }
 .stats-grid-container .fear-greed-box {
     grid-row: span 1 !important;
@@ -425,7 +418,8 @@
 .dominance-box .dominance-item {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
     gap: 8px !important;
     margin: 8px 0 !important;
     font-size: 0.95rem !important;

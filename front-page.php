@@ -1564,10 +1564,10 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     color: #2ecc71;
 }
 
-/* شاخص ترس و طمع - ENHANCED */
+/* شاخص ترس و طمع - COMPACT & CONSISTENT */
 .fear-greed-box {
-    grid-row: span 2;
-    min-height: 215px;
+    grid-row: span 1;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1576,7 +1576,7 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
 .fear-greed-gauge {
     position: relative;
     width: 100%;
-    height: 120px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1585,9 +1585,9 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
 
 .gauge-bars {
     display: flex;
-    gap: 3px;
+    gap: 4px;
     justify-content: center;
-    width: 150px;
+    width: 170px;
     height: 80px;
     position: relative;
     transform: scaleY(-1);
@@ -1622,24 +1622,24 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-bottom: 13px solid #0f172a;
+    border-bottom: 12px solid #0f172a;
     position: absolute;
     top: -10px;
-    left: -5px;
+    left: -6px;
 }
 
 .gauge-value {
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: 900;
     color: var(--text-primary);
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
 .gauge-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-secondary);
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 /* نمودار mini برای ارزش بازار و تتر */
@@ -1658,11 +1658,25 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
 .dominance-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 6px;
     margin: 6px 0;
     font-size: 0.85rem;
     font-weight: 700;
+}
+
+/* یکسان‌سازی ارتفاع ۴ کارت سمت چپ */
+.stats-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.stats-grid-container .stat-box {
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 /* جدول قیمت لحظه‌ای - FIXED */
