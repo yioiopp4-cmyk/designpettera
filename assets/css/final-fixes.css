@@ -513,3 +513,64 @@
   gap: 6px !important;
   margin-top: 16px;
 }
+
+/* ====== Equal sizing for left 4 stat cards + compact gainers/losers ====== */
+/* Make the 2x2 stats grid cards equal height and tidy */
+.stats-grid-container {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 10px !important;
+  /* Force equal row heights on desktop */
+  grid-auto-rows: 140px !important;
+}
+
+.stats-grid-container .stat-box {
+  height: 100% !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* Prevent fear & greed from spanning rows and shrink internals */
+.stats-grid-container .fear-greed-box {
+  grid-row: auto !important;
+  min-height: 0 !important;
+}
+
+.stats-grid-container .fear-greed-gauge {
+  height: 70px !important;
+}
+
+/* Compact top gainers/losers lists so they don't look empty */
+.top-gainers,
+.top-losers {
+  align-self: start !important;
+  height: auto !important;
+}
+
+.top-gainers .card-body,
+.top-losers .card-body {
+  min-height: 0 !important;   /* override previous 150px */
+  flex: initial !important;   /* don't stretch to fill */
+  padding: 6px 0 !important;
+  gap: 6px !important;
+}
+
+.top-gainers .item,
+.top-losers .item {
+  padding: 8px 6px !important;
+  margin: 0 !important;
+}
+
+.top-gainers .slider-dots,
+.top-losers .slider-dots {
+  margin-top: 6px !important;
+}
+
+@media (max-width: 1024px) {
+  /* Let cards grow naturally on smaller screens */
+  .stats-grid-container {
+    grid-auto-rows: auto !important;
+  }
+}
