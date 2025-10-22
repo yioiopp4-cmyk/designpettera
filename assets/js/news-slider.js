@@ -1,78 +1,89 @@
 /**
  * اسلایدر اخبار اتوماتیک با همگام‌سازی تصاویر و عناوین
+ * - اسلاید بعدی هر ۵ ثانیه
+ * - اسکرول نرم عناوین بدون نمایش نوار اسکرول
+ * - ریست انیمیشن progress bar در هر تغییر اسلاید
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (window.__featuredSliderInitialized) {
-        return; // جلوگیری از دوبار مقداردهی
-    }
-    window.__featuredSliderInitialized = true;
-    
+    // جلوگیری از دوباره‌سازی فقط برای اسلایدر اخبار
+    if (window.__newsSliderInitialized) return;
+    window.__newsSliderInitialized = true;
+
     const slider = document.querySelector('.featured-slider');
     const newsList = document.querySelector('.featured-news-list');
-    
+
     if (!slider || !newsList) return;
-    
+
     const slides = slider.querySelectorAll('.featured-slide');
     const newsItems = newsList.querySelectorAll('.news-item');
-    
+
     if (slides.length === 0 || newsItems.length === 0) return;
-    
+
     let currentSlide = 0;
-    let autoplayInterval = null;
-    
-    // تابع تغییر اسلاید
-    function changeSlide(index) {
-        // حذف کلاس active از همه
+    let intervalId = null;
+
+    function showSlide(nextIndex) {
+        // محاسبه ایمن اندیس
+        currentSlide = ((nextIndex % slides.length) + slides.length) % slides.length;
+
+        // همگام‌سازی کلاس‌ها
         slides.forEach(slide => slide.classList.remove('active'));
         newsItems.forEach(item => item.classList.remove('active-news'));
-        
-        // اضافه کردن کلاس active به اسلاید و عنوان مورد نظر
-        if (slides[index]) slides[index].classList.add('active');
-        if (newsItems[index]) newsItems[index].classList.add('active-news');
-        
-        currentSlide = index;
-    }
-    
-    // تابع رفتن به اسلاید بعدی
-    function nextSlide() {
-        const nextIndex = (currentSlide + 1) % slides.length;
-        changeSlide(nextIndex);
-    }
-    
-    // شروع autoplay
-    function startAutoplay() {
-        stopAutoplay(); // ابتدا autoplay قبلی را متوقف کن
-        autoplayInterval = setInterval(nextSlide, 5000); // هر 5 ثانیه
-    }
-    
-    // توقف autoplay
-    function stopAutoplay() {
-        if (autoplayInterval) {
-            clearInterval(autoplayInterval);
-            autoplayInterval = null;
+        slides[currentSlide]?.classList.add('active');
+        newsItems[currentSlide]?.classList.add('active-news');
+
+        // اسکرول نرم لیست عناوین به آیتم فعال
+        const activeItem = newsItems[currentSlide];
+        if (activeItem && typeof newsList.scrollTo === 'function') {
+            const targetTop = currentSlide === 0 ? 0 : activeItem.offsetTop - 4;
+            newsList.scrollTo({ top: targetTop, behavior: 'smooth' });
+        }
+
+        // ریست انیمیشن نوار پیشرفت اسلاید جاری
+        const progressFill = slides[currentSlide]?.querySelector('.slide-progress-fill');
+        if (progressFill) {
+            progressFill.style.animation = 'none';
+            // reflow
+            // eslint-disable-next-line no-unused-expressions
+            progressFill.offsetHeight;
+            progressFill.style.animation = 'progressAnimation 5s linear forwards';
         }
     }
-    
-    // کلیک روی عناوین اخبار
+
+    function start() {
+        stop();
+        intervalId = setInterval(() => showSlide(currentSlide + 1), 5000);
+    }
+
+    function stop() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    }
+
+    // تعامل کاربر با عناوین
     newsItems.forEach((item, index) => {
         item.style.cursor = 'pointer';
-        item.addEventListener('click', function() {
-            changeSlide(index);
-            stopAutoplay();
-            setTimeout(startAutoplay, 3000); // بعد از 3 ثانیه دوباره autoplay شروع شود
+        item.addEventListener('click', (e) => {
+            if (e.target && e.target.tagName === 'A') return; // اجازه بده روی لینک بره
+            e.preventDefault();
+            showSlide(index);
+            start(); // با زمان‌بندی تازه ادامه بده
         });
     });
+
+    // توقف/ادامه هنگام hover
+    ['mouseenter', 'mouseleave'].forEach(evt => {
+        slider.addEventListener(evt, evt === 'mouseenter' ? stop : start);
+        newsList.addEventListener(evt, evt === 'mouseenter' ? stop : start);
+    });
+
+    // شروع
+    showSlide(0);
+    start();
     
-    // توقف autoplay در هنگام hover
-    slider.addEventListener('mouseenter', stopAutoplay);
-    slider.addEventListener('mouseleave', startAutoplay);
-    
-    newsList.addEventListener('mouseenter', stopAutoplay);
-    newsList.addEventListener('mouseleave', startAutoplay);
-    
-    // شروع اسلایدر
-    startAutoplay();
-    
-    console.log('✅ News Slider initialized with', slides.length, 'slides');
+    // Debug
+    // console.log('✅ News Slider initialized with', slides.length, 'slides');
 });
