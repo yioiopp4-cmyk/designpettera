@@ -1322,6 +1322,9 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     font-size: 0.95rem;
     font-weight: 800;
     color: var(--primary);
+    background: rgba(20, 184, 166, 0.08);
+    padding: 6px 8px;
+    border-radius: 6px;
 }
 
 /* تنظیم اندازه فونت برای حالت چند ستونی */

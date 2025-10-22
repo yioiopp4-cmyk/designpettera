@@ -33,10 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
         slides[currentSlide]?.classList.add('active');
         newsItems[currentSlide]?.classList.add('active-news');
 
-        // اسکرول نرم لیست عناوین تا آیتم فعال (سازگارتر)
+        // اسکرول نرم لیست عناوین تا آیتم فعال (با محاسبه اختلاف دید)
         const activeItem = newsItems[currentSlide];
-        if (activeItem && typeof activeItem.scrollIntoView === 'function') {
-            activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        if (activeItem) {
+            const c = newsList;
+            const cRect = c.getBoundingClientRect();
+            const iRect = activeItem.getBoundingClientRect();
+            let delta = 0;
+            if (iRect.top < cRect.top) {
+                delta = iRect.top - cRect.top - 6; // کمی بالاتر
+            } else if (iRect.bottom > cRect.bottom) {
+                delta = iRect.bottom - cRect.bottom + 6; // کمی پایین‌تر
+            }
+            if (delta !== 0) {
+                c.scrollBy({ top: delta, behavior: 'smooth' });
+            }
         }
 
         // ریست انیمیشن نوار پیشرفت اسلاید جاری
@@ -62,21 +73,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // تعامل کاربر با عناوین
+    // تعامل کاربر با عناوین (بدون توقف دائمی اسلایدر)
     newsItems.forEach((item, index) => {
         item.style.cursor = 'pointer';
         item.addEventListener('click', (e) => {
-            if (e.target && e.target.tagName === 'A') return; // اجازه بده روی لینک بره
+            // اگر روی لینک کلیک شد اجازه بده ناوبری انجام شود
+            if (e.target && e.target.tagName === 'A') return;
             e.preventDefault();
             showSlide(index);
-            start(); // با زمان‌بندی تازه ادامه بده
+            start(); // بلافاصله تایمر را بازتنظیم کن
         });
+        // جلوگیری از توقف با اسکرول وسط موس (wheel): فقط اسکرول عناوین انجام شود و تایمر ادامه یابد
+        item.addEventListener('wheel', (e) => {
+            const direction = Math.sign(e.deltaY);
+            if (direction !== 0) {
+                e.preventDefault();
+                newsList.scrollBy({ top: direction * 40, behavior: 'smooth' });
+            }
+        }, { passive: false });
     });
 
-    // توقف/ادامه هنگام hover
-    ['mouseenter', 'mouseleave'].forEach(evt => {
-        slider.addEventListener(evt, evt === 'mouseenter' ? stop : start);
-        newsList.addEventListener(evt, evt === 'mouseenter' ? stop : start);
+    // دیگر در حالت hover متوقف نمی‌کنیم تا اسلایدر هرگز گیر نکند
+
+    // در تغییر دید صفحه، اجرای تایمر را مدیریت کنیم
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stop();
+        } else {
+            start();
+        }
     });
 
     // شروع
