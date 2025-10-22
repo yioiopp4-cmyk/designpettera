@@ -1194,7 +1194,7 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     display: grid;
     grid-template-columns: 2.4fr 1fr;
     gap: 16px;
-    align-items: start; /* جلوگیری از کشیده شدن کارت سمت راست و خالی ماندن پایین */
+    align-items: stretch; /* کش آمدن آیتم‌ها برای هم‌ارتفاع شدن دو کارت */
 }
 
 /* اسلایدر اخبار - IMPROVED */
@@ -1274,6 +1274,8 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     overflow-x: hidden;
     position: relative;
     padding-right: 2px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge legacy */
 }
 
 /* هنگام فعال بودن اسکرول خودکار، هرگونه انیمیشن قبلی غیرفعال شود */
@@ -1359,12 +1361,14 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
 .trend-values { 
     display: flex; 
     flex-direction: column; 
+    height: 100%; /* پر کردن ارتفاع ردیف */
 }
 
 .trend-values .card-body {
     display: grid;
     grid-template-rows: repeat(6, auto);
     gap: 4px;
+    flex: 1; /* بدنه کارت کش بیاید تا دات‌ها به پایین بچسبند */
 }
 
 .coin-item {
@@ -2033,68 +2037,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // اسلایدر اخبار با همگام‌سازی عنوان‌ها و اسکرول عمودی عناوین
-    const slides = document.querySelectorAll('.featured-slide');
-    const newsItems = document.querySelectorAll('.featured-news-list .news-item');
-    const newsListContainer = document.querySelector('.featured-news-list');
-    let currentSlide = 0;
-    let sliderInterval;
-    
-    function showSlide(n) {
-        // حذف کلاس active از همه اسلایدها و عنوان‌ها
-        slides.forEach(slide => slide.classList.remove('active'));
-        newsItems.forEach(item => item.classList.remove('active-news'));
-        
-        // محاسبه اسلاید فعلی
-        currentSlide = (n + slides.length) % slides.length;
-        
-        // اضافه کردن کلاس active به اسلاید و عنوان فعلی
-        if (slides[currentSlide]) {
-            slides[currentSlide].classList.add('active');
-        }
-        if (newsItems[currentSlide]) {
-            newsItems[currentSlide].classList.add('active-news');
-        }
-        
-        // اسکرول نرم عناوین به‌سمت آیتم فعال
-        if (newsListContainer && newsItems[currentSlide]) {
-            const targetTop = currentSlide === 0 ? 0 : newsItems[currentSlide].offsetTop - 4;
-            newsListContainer.scrollTo({ top: targetTop, behavior: 'smooth' });
-        }
-
-        // ریست کردن انیمیشن progress bar
-        const progressFill = slides[currentSlide]?.querySelector('.slide-progress-fill');
-        if (progressFill) {
-            progressFill.style.animation = 'none';
-            setTimeout(() => {
-                progressFill.style.animation = 'progressAnimation 5s linear forwards';
-            }, 10);
-        }
-    }
-    
-    // کلیک روی عنوان‌ها برای تغییر دستی اسلاید
-    newsItems.forEach((item, index) => {
-        item.addEventListener('click', (e) => {
-            // اگر روی لینک کلیک نشد، اسلاید را تغییر بده
-            if (e.target.tagName !== 'A') {
-                e.preventDefault();
-                showSlide(index);
-                
-                // ریست کردن تایمر
-                clearInterval(sliderInterval);
-                sliderInterval = setInterval(() => {
-                    showSlide(currentSlide + 1);
-                }, 5000);
-            }
-        });
-    });
-    
-    // تغییر خودکار اسلاید هر 5 ثانیه
-    if (slides.length > 0) {
-        sliderInterval = setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
-    }
+    // اسکریپت اسلایدر اخبار به فایل جداگانه منتقل شده است (assets/js/news-slider.js)
 });
 </script>
 

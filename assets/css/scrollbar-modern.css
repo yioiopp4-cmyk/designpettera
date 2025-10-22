@@ -50,14 +50,16 @@
 }
 
 /* اسکرول برای عناصر خاص */
-.featured-news-list::-webkit-scrollbar {
-    width: 6px;
+/* مخفی کردن نوار اسکرول فهرست اخبار ولی اجازه اسکرول برنامه‌ای */
+.featured-news-list {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge legacy */
+    -webkit-overflow-scrolling: touch; /* iOS smooth */
 }
-
-.featured-news-list::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-    border-radius: 3px;
-    border: none;
+.featured-news-list::-webkit-scrollbar {
+    width: 0 !important; /* WebKit */
+    height: 0 !important;
+    background: transparent !important;
 }
 
 .categories-filter::-webkit-scrollbar {
