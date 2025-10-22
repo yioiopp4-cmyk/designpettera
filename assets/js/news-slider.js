@@ -23,6 +23,34 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSlide = 0;
     let intervalId = null;
 
+    function getRelativeTop(element, container) {
+        let offset = 0;
+        let node = element;
+        while (node && node !== container) {
+            offset += node.offsetTop;
+            node = node.offsetParent;
+        }
+        return offset;
+    }
+
+    function ensureVisible(container, item) {
+        if (!container || !item) return;
+        const itemTop = getRelativeTop(item, container);
+        const itemBottom = itemTop + item.offsetHeight;
+        const viewTop = container.scrollTop;
+        const viewBottom = viewTop + container.clientHeight;
+
+        let targetTop = null;
+        if (itemTop < viewTop) {
+            targetTop = Math.max(0, itemTop - 6);
+        } else if (itemBottom > viewBottom) {
+            targetTop = Math.max(0, itemBottom - container.clientHeight + 6);
+        }
+        if (targetTop !== null) {
+            container.scrollTo({ top: targetTop, behavior: 'smooth' });
+        }
+    }
+
     function showSlide(nextIndex) {
         // محاسبه ایمن اندیس
         currentSlide = ((nextIndex % slides.length) + slides.length) % slides.length;
@@ -33,21 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
         slides[currentSlide]?.classList.add('active');
         newsItems[currentSlide]?.classList.add('active-news');
 
-        // اسکرول نرم لیست عناوین تا آیتم فعال (با محاسبه اختلاف دید)
+        // اطمینان از نمایان بودن عنوان فعال در لیست (حتی برای آخرین آیتم)
         const activeItem = newsItems[currentSlide];
         if (activeItem) {
-            const c = newsList;
-            const cRect = c.getBoundingClientRect();
-            const iRect = activeItem.getBoundingClientRect();
-            let delta = 0;
-            if (iRect.top < cRect.top) {
-                delta = iRect.top - cRect.top - 6; // کمی بالاتر
-            } else if (iRect.bottom > cRect.bottom) {
-                delta = iRect.bottom - cRect.bottom + 6; // کمی پایین‌تر
-            }
-            if (delta !== 0) {
-                c.scrollBy({ top: delta, behavior: 'smooth' });
-            }
+            // منتظر بمان تا DOM کلاس‌های جدید را اعمال کند سپس اسکرول کن
+            requestAnimationFrame(() => ensureVisible(newsList, activeItem));
         }
 
         // ریست انیمیشن نوار پیشرفت اسلاید جاری
@@ -83,15 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
             showSlide(index);
             start(); // بلافاصله تایمر را بازتنظیم کن
         });
-        // جلوگیری از توقف با اسکرول وسط موس (wheel): فقط اسکرول عناوین انجام شود و تایمر ادامه یابد
-        item.addEventListener('wheel', (e) => {
-            const direction = Math.sign(e.deltaY);
-            if (direction !== 0) {
-                e.preventDefault();
-                newsList.scrollBy({ top: direction * 40, behavior: 'smooth' });
-            }
-        }, { passive: false });
     });
+
+    // اجازه اسکرول طبیعی با چرخ‌ماوس روی ظرف عناوین؛ تایمر قطع نمی‌شود
 
     // دیگر در حالت hover متوقف نمی‌کنیم تا اسلایدر هرگز گیر نکند
 
