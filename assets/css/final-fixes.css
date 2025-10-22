@@ -34,31 +34,24 @@
     height: 430px !important;
 }
 
+/* فهرست عناوین اخبار کنار اسلایدر */
 .featured-news-list {
-    max-height: 120px;
-    overflow-y: hidden; /* اسکرول خودکار - بدون نمایش اسکرول‌بار */
+    max-height: 132px; /* 3 سطر عنوان */
+    overflow-y: auto; /* اجازه اسکرول نرم با اسکریپت */
     overflow-x: hidden;
     position: relative;
+    scrollbar-width: thin;
 }
 
 /* اسکرول اتوماتیک برای بیش از 3 خبر */
-.featured-news-list.auto-scroll {
-    animation: auto-scroll-news 20s linear infinite;
-    animation-play-state: running;
-}
+/* حالت قدیمی auto-scroll با keyframes غیرفعال شد؛ از اسکرول برنامه‌نویسی‌شده استفاده می‌کنیم */
+.featured-news-list.auto-scroll { animation: none; }
 
 .featured-news-list.auto-scroll:hover {
     animation-play-state: paused;
 }
 
-@keyframes auto-scroll-news {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(calc(-100% + 120px));
-    }
-}
+/* حذف keyframes قدیمی */
 
 /* بیشترین رشد و افت - با آیکن */
 .top-losers .coin-icon-small,
@@ -347,7 +340,7 @@
     display: grid !important;
     grid-template-columns: 2fr 2fr 1.7fr !important;
     gap: 20px !important;
-    align-items: stretch !important; /* تمام کارت‌ها هم‌ارتفاع */
+    align-items: start !important; /* ارتفاع طبیعی - بدون فضای خالی */
 }
 
 /* کارت‌های افت و رشد */
@@ -355,7 +348,6 @@
 .top-gainers {
     display: flex !important;
     flex-direction: column !important;
-    height: 100% !important;
 }
 
 .top-losers .card-body,
@@ -516,9 +508,8 @@
 .top-losers .card-body {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   align-items: stretch !important;
   gap: 6px !important;
-  height: 100% !important;
   margin-top: 16px;
 }
