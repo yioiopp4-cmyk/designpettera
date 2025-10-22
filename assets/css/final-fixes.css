@@ -43,7 +43,9 @@
     overflow-x: hidden;
     position: relative;
     scrollbar-width: none; /* مخفی در Firefox */
+    -ms-overflow-style: none; /* IE/Edge legacy */
 }
+.featured-news-list::-webkit-scrollbar { width: 0; height: 0; }
 
 /* اسکرول اتوماتیک برای بیش از 3 خبر */
 /* حالت قدیمی auto-scroll با keyframes غیرفعال شد؛ از اسکرول برنامه‌نویسی‌شده استفاده می‌کنیم */

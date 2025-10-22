@@ -1274,6 +1274,8 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     overflow-x: hidden;
     position: relative;
     padding-right: 2px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge legacy */
 }
 
 /* هنگام فعال بودن اسکرول خودکار، هرگونه انیمیشن قبلی غیرفعال شود */

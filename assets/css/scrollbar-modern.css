@@ -52,11 +52,14 @@
 /* اسکرول برای عناصر خاص */
 /* مخفی کردن نوار اسکرول فهرست اخبار ولی اجازه اسکرول برنامه‌ای */
 .featured-news-list {
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge legacy */
+    -webkit-overflow-scrolling: touch; /* iOS smooth */
 }
 .featured-news-list::-webkit-scrollbar {
-    width: 0; /* WebKit */
-    height: 0;
+    width: 0 !important; /* WebKit */
+    height: 0 !important;
+    background: transparent !important;
 }
 
 .categories-filter::-webkit-scrollbar {

@@ -33,11 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
         slides[currentSlide]?.classList.add('active');
         newsItems[currentSlide]?.classList.add('active-news');
 
-        // اسکرول نرم لیست عناوین به آیتم فعال
+        // اسکرول نرم لیست عناوین تا آیتم فعال (سازگارتر)
         const activeItem = newsItems[currentSlide];
-        if (activeItem && typeof newsList.scrollTo === 'function') {
-            const targetTop = currentSlide === 0 ? 0 : activeItem.offsetTop - 4;
-            newsList.scrollTo({ top: targetTop, behavior: 'smooth' });
+        if (activeItem && typeof activeItem.scrollIntoView === 'function') {
+            activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         }
 
         // ریست انیمیشن نوار پیشرفت اسلاید جاری
