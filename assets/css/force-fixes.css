@@ -1,0 +1,158 @@
+/**
+ * Force Fixes - اصلاحات اجباری با !important
+ * این فایل با بالاترین اولویت لود می‌شود
+ */
+
+/* ========== HEADER POSITION FIX - CRITICAL ========== */
+body.arzdigital-style .arzdigital-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 999999 !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.arzdigital-style .arzdigital-top-toolbar {
+    position: relative !important;
+    top: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+}
+
+body.arzdigital-style .arzdigital-main-header {
+    position: relative !important;
+    top: 0 !important;
+    width: 100% !important;
+    z-index: 999 !important;
+}
+
+body.arzdigital-style {
+    padding-top: var(--arzdigital-header-offset, 108px) !important;
+    margin-top: 0 !important;
+}
+
+body.arzdigital-style .arzdigital-main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ========== TOOLBAR FIXES ========== */
+.arzdigital-top-toolbar {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 8px 0 !important;
+}
+
+.arzdigital-top-toolbar .toolbar-stats {
+    display: flex !important;
+    gap: 24px !important;
+    flex-wrap: nowrap !important;
+}
+
+.arzdigital-top-toolbar .stat-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
+}
+
+/* ========== TRENDING CARDS FIX ========== */
+.trending-section .trending-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    gap: 20px !important;
+}
+
+.trending-section .trending-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.trending-section .trending-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.trending-section .trending-card img.coin-logo {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 auto 12px !important;
+}
+
+.trending-section .trending-card .coin-price {
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    margin: 12px 0 8px 0 !important;
+    display: block !important;
+}
+
+.trending-section .trending-card .coin-symbol {
+    font-size: 13px !important;
+    color: #64748b !important;
+    font-weight: 600 !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+}
+
+.trending-section .trending-card .coin-change {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 4px 12px !important;
+    border-radius: 6px !important;
+    display: inline-block !important;
+}
+
+.trending-section .trending-card .coin-change.positive {
+    color: #16c784 !important;
+    background: rgba(22, 199, 132, 0.1) !important;
+}
+
+.trending-section .trending-card .coin-change.negative {
+    color: #ea3943 !important;
+    background: rgba(234, 57, 67, 0.1) !important;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .arzdigital-top-toolbar {
+        display: none !important;
+    }
+    
+    .trending-section .trending-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Normalize IRR price size in tables/cards */
+.crypto-table .price-irr,
+.price-irr {
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+}
+
+.crypto-table .price-irr span,
+.price-irr span {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+}
+
+@media (max-width: 480px) {
+    .trending-section .trending-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

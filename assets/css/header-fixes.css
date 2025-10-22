@@ -1,0 +1,140 @@
+/**
+ * Header Fixes - رفع مشکل header و toolbar
+ */
+
+/* Fix header stacking - CRITICAL */
+.arzdigital-style .arzdigital-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 999999 !important;
+    background: #fff !important;
+}
+
+/* Fix body padding - CRITICAL */
+body.arzdigital-style {
+    padding-top: var(--arzdigital-header-offset, 82px) !important;
+    margin-top: 0 !important;
+}
+
+/* Ensure main content is below header */
+.arzdigital-style .arzdigital-main {
+    margin-top: 0 !important;
+    padding-top: 20px !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Fix toolbar stats overflow */
+.arzdigital-top-toolbar .toolbar-stats {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.arzdigital-top-toolbar .stat-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Better responsive for toolbar */
+@media (max-width: 1200px) {
+    .toolbar-stats .stat-item:nth-child(n+5) {
+        display: none !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .toolbar-stats .stat-item:nth-child(n+4) {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .arzdigital-top-toolbar {
+        display: none !important;
+    }
+    
+    body.arzdigital-style {
+        padding-top: var(--arzdigital-header-offset) !important;
+    }
+}
+
+/* Fix trending cards */
+.trending-section .trending-card {
+    text-align: center;
+}
+
+.trending-section .trending-card .coin-logo,
+.trending-section .trending-card img.coin-logo {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 auto 12px !important;
+}
+
+.trending-section .trending-card .coin-logo-fallback {
+    width: 64px !important;
+    height: 64px !important;
+    margin: 0 auto 12px !important;
+}
+
+.trending-section .trending-card .coin-price {
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    margin: 12px 0 8px 0 !important;
+    display: block !important;
+}
+
+.trending-section .trending-card .coin-symbol {
+    font-size: 13px !important;
+    color: #64748b !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+}
+
+.trending-section .trending-card h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    margin: 8px 0 !important;
+}
+
+/* Fix breaking news */
+.breaking-news-section {
+    background: #fff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 12px 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.breaking-news-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+}
+
+.breaking-label {
+    flex-shrink: 0 !important;
+}
+
+.breaking-news-slider {
+    flex: 1 !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+}
+
+.breaking-news-item {
+    display: inline-block !important;
+    margin-left: 32px !important;
+    white-space: nowrap !important;
+}

@@ -1,0 +1,108 @@
+/**
+ * Arzdigital Fixes
+ * رفع مشکلات و بهبودهای ظاهری
+ */
+
+/* رفع مشکل قیمت تومان بزرگ */
+.crypto-table .price-irr {
+    font-size: 14px !important;
+    font-weight: 700;
+}
+
+.crypto-table .price-irr span {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* رفع مشکل منو */
+.arzdigital-header .main-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 4px;
+    align-items: center;
+}
+
+.arzdigital-header .main-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.arzdigital-header .main-menu li a {
+    display: block;
+    padding: 8px 16px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.arzdigital-header .main-menu li a:hover {
+    background: #f8fafc;
+    color: #0f766e;
+}
+
+/* بهبود نمایش ارزهای ترند */
+.trending-card .coin-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    object-fit: cover;
+}
+
+/* رفع مشکل اخبار فوری */
+.breaking-news-slider {
+    display: flex;
+    gap: 24px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.breaking-news-item {
+    display: inline-flex;
+    animation: slideNews 20s linear infinite;
+}
+
+@keyframes slideNews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* بهبود responsive header */
+@media (max-width: 1024px) {
+    .arzdigital-top-toolbar {
+        overflow-x: auto;
+    }
+    
+    .toolbar-stats {
+        flex-wrap: nowrap;
+        min-width: max-content;
+    }
+}
+
+@media (max-width: 768px) {
+    .arzdigital-main-header .header-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex !important;
+    }
+}
+
+/* رفع مشکل جدول در موبایل */
+@media (max-width: 768px) {
+    .crypto-table .price-irr {
+        font-size: 12px !important;
+    }
+    
+    .crypto-table td {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+}

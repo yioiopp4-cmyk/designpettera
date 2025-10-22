@@ -1,0 +1,524 @@
+/**
+ * Final Fixes برای صفحه اصلی
+ * رفع تمام مشکلات UI/UX
+ */
+
+/* قیمت تومانی - سایز مناسب */
+.crypto-table .price-irr {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+}
+
+.crypto-table .price-irr .currency-label {
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    margin-right: 3px;
+}
+
+/* آیکن‌های کوچک‌تر در ارزهای ترند */
+.trend-values .coin-logo-img {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* بخش اخبار - کوچک‌تر و زیباتر */
+.featured-slider {
+    height: 430px !important;
+}
+
+.featured-slide .image-placeholder {
+    height: 430px !important;
+}
+
+.featured-news-list {
+    max-height: 120px;
+    overflow-y: hidden; /* اسکرول خودکار - بدون نمایش اسکرول‌بار */
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* اسکرول اتوماتیک برای بیش از 3 خبر */
+.featured-news-list.auto-scroll {
+    animation: auto-scroll-news 20s linear infinite;
+    animation-play-state: running;
+}
+
+.featured-news-list.auto-scroll:hover {
+    animation-play-state: paused;
+}
+
+@keyframes auto-scroll-news {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(calc(-100% + 120px));
+    }
+}
+
+/* بیشترین رشد و افت - با آیکن */
+.top-losers .coin-icon-small,
+.top-gainers .coin-icon-small {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.top-losers .item,
+.top-gainers .item {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 10px 8px !important;
+    margin-bottom: 4px;
+}
+
+.top-losers .card-body,
+.top-gainers .card-body {
+    min-height: 150px !important;
+}
+
+.rank {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    padding: 6px 10px !important;
+    border-radius: 50% !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.coin-name-symbol {
+    flex-grow: 1 !important;
+    font-weight: 700 !important;
+    text-align: right !important;
+    font-size: 0.9rem !important;
+}
+
+.coin-name-symbol .symbol {
+    font-size: 0.75rem !important;
+    color: #777 !important;
+    font-weight: 400 !important;
+    display: block !important;
+    margin-top: 2px !important;
+}
+
+.change-percent {
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    white-space: nowrap !important;
+}
+
+.clickable-item {
+    cursor: pointer !important;
+    transition: all 0.3s;
+}
+
+.clickable-item:hover {
+    background: #f8fafc !important;
+    transform: translateX(-3px);
+}
+
+/* شاخص ترس و طمع - بهبود یافته */
+.fear-greed-box {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
+    padding: 24px !important;
+    min-height: 280px !important;
+}
+
+.fear-greed-box h3 {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: white !important;
+    margin-bottom: 20px !important;
+}
+
+.fear-greed-gauge {
+    position: relative !important;
+    width: 100% !important;
+    height: 180px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.gauge-value {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 52px !important;
+    font-weight: 900 !important;
+    color: white !important;
+    z-index: 10 !important;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.gauge-label {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: white !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* نوار‌های گیج */
+.gauge-bars {
+    position: absolute !important;
+    width: 140px !important;
+    height: 140px !important;
+    border-radius: 50% !important;
+    background: conic-gradient(
+        from 180deg,
+        #dc2626 0deg 72deg,
+        #f59e0b 72deg 144deg,
+        #fbbf24 144deg 216deg,
+        #84cc16 216deg 288deg,
+        #16a34a 288deg 360deg
+    ) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* فلش اشاره‌گر */
+.gauge-pointer {
+    position: absolute !important;
+    width: 80px !important;
+    height: 80px !important;
+    z-index: 5 !important;
+    transform-origin: center !important;
+    transition: transform 0.5s ease !important;
+}
+
+.pointer-arrow {
+    width: 0 !important;
+    height: 0 !important;
+    border-left: 6px solid transparent !important;
+    border-right: 6px solid transparent !important;
+    border-bottom: 70px solid rgba(255, 255, 255, 0.9) !important;
+    position: absolute !important;
+    top: -10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) !important;
+}
+.stats-grid-container .fear-greed-box {
+    grid-row: span 1 !important;
+}
+
+.fear-greed-gauge {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gauge-bars {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    width: 150px;
+    height: 80px;
+    position: relative;
+    transform: scaleY(-1);
+    border-radius: 100px 100px 0 0;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.gauge-bar {
+    flex: 1;
+    height: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.gauge-bar.extreme-fear { 
+    background: #ea3943 !important; 
+}
+.gauge-bar.fear { 
+    background: #f6465d !important; 
+}
+.gauge-bar.neutral { 
+    background: #fbbf24 !important; 
+}
+.gauge-bar.greed { 
+    background: #10b981 !important; 
+}
+.gauge-bar.extreme-greed { 
+    background: #16c784 !important; 
+}
+
+.gauge-pointer {
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: #0f172a;
+    transform-origin: bottom center;
+    top: 20px;
+    transition: transform 0.5s ease;
+}
+
+.pointer-arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid #0f172a;
+    position: absolute;
+    top: -10px;
+    left: -5px;
+}
+
+.gauge-value {
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    margin-top: 10px;
+}
+
+.gauge-label {
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    margin-top: 4px;
+}
+
+/* آمار و شاخص 
+.stats-grid-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+    gap: 15px !important;
+    height: 100% !important;
+}
+
+.stat-box {
+    background: #fff !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    text-align: center !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-height: 100px !important;
+}
+*/
+.stat-box h3 {
+    font-size: 0.85rem !important;
+    color: #777 !important;
+    margin: 0 0 10px 0 !important;
+    font-weight: 700 !important;
+}
+
+.stat-value {
+    font-weight: 800 !important;
+    font-size: 1.3rem !important;
+    margin-bottom: 8px !important;
+    color: #0f172a !important;
+}
+
+.stat-value.down {
+    color: #e74c3c !important;
+}
+
+/* بخش پایینی - یکسان‌سازی ارتفاع کارت‌ها */
+.bottom-section-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 2fr 1.7fr !important;
+    gap: 20px !important;
+    align-items: stretch !important; /* تمام کارت‌ها هم‌ارتفاع */
+}
+
+/* کارت‌های افت و رشد */
+.top-losers,
+.top-gainers {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+.top-losers .card-body,
+.top-gainers .card-body {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    padding-bottom: 16px !important;
+}
+
+/* فاصله از قیمت ارزها */
+.crypto-table-section {
+    margin-top: 40px !important;
+}
+
+/* کاهش فاصله سه نقطه در ارزهای ترند */
+.trend-values .slider-dots {
+    margin-top: 8px !important;
+    padding-top: 0 !important;
+}
+.mini-trend-chart {
+    margin: 8px 0;
+    opacity: 0.7;
+    height: 30px;
+}
+
+.mini-trend-chart svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.market-cap-box,
+.tether-box {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+/* کاهش فاصله بخش جدول */
+.crypto-table-section {
+    padding: 30px 0 20px 0 !important;
+    margin-top: -10px;
+}
+
+/* تب‌ها */
+.tab-btn {
+    padding: 8px 16px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.tab-btn:hover {
+    background: #f8fafc;
+}
+
+.tab-btn.active {
+    background: #0f766e !important;
+    color: white !important;
+    border-color: #0f766e !important;
+}
+
+/* دامیننس - با آیکون‌های BTC و ETH */
+.dominance-box .dominance-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    margin: 8px 0 !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+}
+
+.dominance-box .dominance-item i {
+    font-size: 20px !important;
+    flex-shrink: 0 !important;
+}
+
+/* اگر فونت آیکون نباشد، از تصویر استفاده می‌کنیم */
+.dominance-box .dominance-item .coin-icon-mini {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+}
+@media (max-width: 1024px) {
+    .top-section-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .bottom-section-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .bottom-section-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .fear-greed-box {
+        grid-row: span 1 !important;
+    }
+}
+/*جدید/*
+
+
+/* فونت داخل کارت‌ها کمی کوچک‌تر تا فشرده‌تر شود */
+.stat-box h3 {
+  font-size: 0.8rem !important;
+  margin-bottom: 6px !important;
+}
+.stat-value {
+  font-size: 1.1rem !important;
+  margin-bottom: 4px !important;
+}
+
+/* ---------- Final height balance fix ---------- */
+
+
+/* فقط اجازه بده کارت‌ها تا جایی که نیاز دارند رشد کنند */
+.bottom-section-grid > * {
+  height: auto !important;
+}
+
+/* کارت‌های آمار سمت چپ */
+.stats-grid-container {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 9px !important;
+  align-items: stretch !important;
+  height: auto !important;
+}
+
+.stat-box {
+  background: #fff !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  text-align: center !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  height: auto !important;
+  min-height: 60px !important; /* تنظیم ارتفاع پایه */
+}
+
+/* بخش رشد و افت */
+.top-gainers .card-body,
+.top-losers .card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  gap: 6px !important;
+  height: 100% !important;
+  margin-top: 16px;
+}

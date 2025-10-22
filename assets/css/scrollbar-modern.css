@@ -1,0 +1,70 @@
+/**
+ * اسکرول‌بار مدرن و زیبا برای کل سایت
+ */
+
+/* اسکرول‌بار برای مرورگرهای وب‌کیت (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    border: 2px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    border-color: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, #5b4da2 0%, #5568d3 100%);
+}
+
+/* اسکرول‌بار برای Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #667eea #f1f5f9;
+}
+
+/* حالت تاریک */
+.dark-theme ::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #1e293b;
+}
+
+.dark-theme * {
+    scrollbar-color: #667eea #1e293b;
+}
+
+/* اسکرول برای عناصر خاص */
+.featured-news-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.featured-news-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    border-radius: 3px;
+    border: none;
+}
+
+.categories-filter::-webkit-scrollbar {
+    height: 6px;
+}
+
+.categories-filter::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 3px;
+}

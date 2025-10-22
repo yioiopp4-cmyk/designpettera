@@ -1,0 +1,1072 @@
+/* =====================================
+   صفحه اخبار - استایل حرفه‌ای و مدرن
+   ===================================== */
+
+:root {
+    --news-primary: #6366f1;
+    --news-secondary: #8b5cf6;
+    --news-accent: #ec4899;
+    --news-success: #10b981;
+    --news-warning: #f59e0b;
+    --news-bg: #f8fafc;
+    --news-card-bg: #ffffff;
+    --news-text: #0f172a;
+    --news-text-light: #64748b;
+    --news-border: #e2e8f0;
+    --news-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --news-shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
+    --news-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-theme {
+    --news-bg: #0f172a;
+    --news-card-bg: #1e293b;
+    --news-text: #f1f5f9;
+    --news-text-light: #cbd5e1;
+    --news-border: #334155;
+}
+
+/* ===== کانتینر اصلی ===== */
+.news-archive-page {
+    background: var(--news-bg);
+    min-height: 100vh;
+    padding: 40px 0;
+    transition: var(--news-transition);
+}
+
+.news-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+    align-items: start;
+}
+
+/* ===== هدر صفحه ===== */
+.news-header-section {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+}
+
+.page-title-area {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.page-main-title {
+    font-size: 42px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--news-primary), var(--news-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 12px 0;
+    animation: fadeInDown 0.6s ease;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    color: var(--news-text-light);
+    font-weight: 600;
+    margin: 0;
+    animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== نوار ابزار ===== */
+.news-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: var(--news-card-bg);
+    padding: 20px 24px;
+    border-radius: 20px;
+    box-shadow: var(--news-shadow);
+    border: 1px solid var(--news-border);
+}
+
+.toolbar-left, .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* جستجو */
+.search-box {
+    position: relative;
+    width: 320px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 48px 12px 20px;
+    border: 2px solid var(--news-border);
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--news-text);
+    background: var(--news-bg);
+    transition: var(--news-transition);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--news-primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.search-btn {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--news-text-light);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: var(--news-transition);
+}
+
+.search-btn:hover {
+    background: var(--news-border);
+    color: var(--news-primary);
+}
+
+/* مرتب‌سازی */
+.sort-dropdown {
+    position: relative;
+}
+
+.sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: var(--news-bg);
+    border: 2px solid var(--news-border);
+    border-radius: 14px;
+    color: var(--news-text);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--news-transition);
+}
+
+.sort-btn:hover {
+    border-color: var(--news-primary);
+    background: var(--news-card-bg);
+}
+
+.sort-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--news-card-bg);
+    border: 1px solid var(--news-border);
+    border-radius: 14px;
+    box-shadow: var(--news-shadow);
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--news-transition);
+    z-index: 100;
+}
+
+.sort-dropdown:hover .sort-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sort-item {
+    display: block;
+    padding: 12px 18px;
+    color: var(--news-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--news-transition);
+}
+
+.sort-item:hover {
+    background: var(--news-bg);
+    color: var(--news-primary);
+}
+
+.sort-item.active {
+    background: linear-gradient(135deg, var(--news-primary), var(--news-secondary));
+    color: white;
+}
+
+.sort-item:first-child {
+    border-radius: 14px 14px 0 0;
+}
+
+.sort-item:last-child {
+    border-radius: 0 0 14px 14px;
+}
+
+/* دکمه‌های نما */
+.view-toggle {
+    display: flex;
+    gap: 8px;
+    background: var(--news-bg);
+    padding: 4px;
+    border-radius: 12px;
+    border: 2px solid var(--news-border);
+}
+
+.view-btn {
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    color: var(--news-text-light);
+    cursor: pointer;
+    transition: var(--news-transition);
+}
+
+.view-btn:hover {
+    background: var(--news-card-bg);
+    color: var(--news-text);
+}
+
+.view-btn.active {
+    background: linear-gradient(135deg, var(--news-primary), var(--news-secondary));
+    color: white;
+}
+
+/* تغییر تم */
+.theme-toggle {
+    padding: 12px;
+    background: var(--news-bg);
+    border: 2px solid var(--news-border);
+    border-radius: 12px;
+    color: var(--news-text);
+    cursor: pointer;
+    transition: var(--news-transition);
+}
+
+.theme-toggle:hover {
+    background: var(--news-primary);
+    border-color: var(--news-primary);
+    color: white;
+    transform: rotate(15deg);
+}
+
+/* ===== فیلتر دسته‌بندی‌ها ===== */
+.categories-filter {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.categories-filter::-webkit-scrollbar {
+    display: none;
+}
+
+.categories-scroll {
+    display: flex;
+    gap: 12px;
+    padding: 4px;
+}
+
+.category-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--news-card-bg);
+    border: 2px solid var(--news-border);
+    border-radius: 16px;
+    color: var(--news-text);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    white-space: nowrap;
+    transition: var(--news-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-tab::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--cat-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.category-tab:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.category-tab.active {
+    background: var(--cat-color);
+    border-color: var(--cat-color);
+    color: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.category-tab.active::before {
+    transform: scaleX(1);
+}
+
+.cat-icon {
+    font-size: 20px;
+}
+
+/* ===== Grid اخبار ===== */
+.news-grid {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+    animation: fadeIn 0.6s ease;
+}
+
+.news-grid[data-view="list"] {
+    grid-template-columns: 1fr;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===== کارت خبر ===== */
+.news-card {
+    background: var(--news-card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--news-shadow);
+    border: 1px solid var(--news-border);
+    transition: var(--news-transition);
+    animation: slideUp 0.5s ease both;
+}
+
+.news-card:nth-child(1) { animation-delay: 0.05s; }
+.news-card:nth-child(2) { animation-delay: 0.1s; }
+.news-card:nth-child(3) { animation-delay: 0.15s; }
+.news-card:nth-child(4) { animation-delay: 0.2s; }
+.news-card:nth-child(5) { animation-delay: 0.25s; }
+.news-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--news-shadow-hover);
+}
+
+.news-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--news-border), var(--news-bg));
+}
+
+.news-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.news-card:hover .news-image {
+    transform: scale(1.08);
+}
+
+.news-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    background: linear-gradient(135deg, #e0e7ff, #ddd6fe);
+}
+
+/* بج دسته‌بندی */
+.category-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* دکمه بوکمارک */
+.bookmark-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.95);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--news-transition);
+    opacity: 0;
+}
+
+.news-card:hover .bookmark-btn {
+    opacity: 1;
+}
+
+.bookmark-btn:hover {
+    background: var(--news-primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.bookmark-btn.bookmarked {
+    opacity: 1;
+    background: var(--news-primary);
+    color: white;
+}
+
+/* محتوای کارت */
+.news-content {
+    padding: 24px;
+}
+
+.news-title {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.5;
+    margin: 0 0 14px 0;
+}
+
+.news-title a {
+    color: var(--news-text);
+    text-decoration: none;
+    transition: var(--news-transition);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-title a:hover {
+    color: var(--news-primary);
+}
+
+.news-excerpt {
+    color: var(--news-text-light);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 18px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* متا */
+.news-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--news-border);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--news-text-light);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.meta-item svg {
+    opacity: 0.7;
+}
+
+/* اکشن‌ها */
+.news-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.read-more-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--news-primary), var(--news-secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: var(--news-transition);
+    flex: 1;
+    justify-content: center;
+}
+
+.read-more-btn:hover {
+    transform: translateX(-4px);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+}
+
+/* اشتراک‌گذاری */
+.share-dropdown {
+    position: relative;
+}
+
+.share-btn {
+    width: 44px;
+    height: 44px;
+    background: var(--news-bg);
+    border: 2px solid var(--news-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--news-text);
+    transition: var(--news-transition);
+}
+
+.share-btn:hover {
+    background: var(--news-primary);
+    border-color: var(--news-primary);
+    color: white;
+    transform: rotate(15deg);
+}
+
+.share-menu {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    background: var(--news-card-bg);
+    border: 1px solid var(--news-border);
+    border-radius: 12px;
+    box-shadow: var(--news-shadow);
+    min-width: 140px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--news-transition);
+    z-index: 10;
+}
+
+.share-dropdown:hover .share-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.share-item {
+    display: block;
+    padding: 10px 16px;
+    color: var(--news-text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: var(--news-transition);
+}
+
+.share-item:hover {
+    background: var(--news-bg);
+    color: var(--news-primary);
+}
+
+/* ===== بارگذاری بیشتر ===== */
+.load-more-section {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 24px;
+}
+
+.load-more-btn {
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--news-primary), var(--news-secondary));
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--news-transition);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.load-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+
+.btn-loader svg {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== بدون نتیجه ===== */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.no-results-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.no-results h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--news-text);
+    margin: 0 0 12px 0;
+}
+
+.no-results p {
+    font-size: 16px;
+    color: var(--news-text-light);
+    margin: 0;
+}
+
+/* ===== سایدبار ===== */
+.news-sidebar {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: sticky;
+    top: 24px;
+}
+
+.sidebar-widget {
+    background: var(--news-card-bg);
+    border: 1px solid var(--news-border);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: var(--news-shadow);
+}
+
+.widget-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--news-text);
+    margin: 0 0 20px 0;
+}
+
+/* اخبار برتر */
+.top-news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.top-news-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px;
+    background: var(--news-bg);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: var(--news-transition);
+}
+
+.top-news-item:hover {
+    background: var(--news-primary);
+    transform: translateX(-4px);
+}
+
+.top-news-item:hover .top-news-content h4,
+.top-news-item:hover .news-time {
+    color: white;
+}
+
+.news-rank {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--news-primary), var(--news-secondary));
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.top-news-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--news-text);
+    margin: 0 0 6px 0;
+    transition: var(--news-transition);
+}
+
+.news-time {
+    font-size: 12px;
+    color: var(--news-text-light);
+    transition: var(--news-transition);
+}
+
+/* نرخ لحظه‌ای */
+.crypto-prices-widget .crypto-prices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: var(--news-bg);
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.crypto-name {
+    color: var(--news-text);
+}
+
+.crypto-price {
+    color: var(--news-primary);
+    font-size: 14px;
+}
+
+/* ===== دکمه‌های رای‌گیری (صعودی/نزولی) ===== */
+.news-voting {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--news-border);
+}
+
+.vote-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--news-bg);
+    border: 2px solid var(--news-border);
+    border-radius: 12px;
+    color: var(--news-text-light);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--news-transition);
+}
+
+.vote-btn:hover:not(.voted) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.vote-btn.bullish-btn:hover:not(.voted) {
+    background: linear-gradient(135deg, #10b981, #16c784);
+    border-color: #10b981;
+    color: white;
+}
+
+.vote-btn.bearish-btn:hover:not(.voted) {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    border-color: #ef4444;
+    color: white;
+}
+
+.vote-btn.voted {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.vote-btn.bullish-btn.active,
+.vote-btn.bullish-btn:active {
+    background: linear-gradient(135deg, #10b981, #16c784);
+    border-color: #10b981;
+    color: white;
+}
+
+.vote-btn.bearish-btn.active,
+.vote-btn.bearish-btn:active {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    border-color: #ef4444;
+    color: white;
+}
+
+.vote-count {
+    background: var(--news-card-bg);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    min-width: 32px;
+    text-align: center;
+}
+
+.vote-btn.bullish-btn.active .vote-count,
+.vote-btn.bullish-btn:hover:not(.voted) .vote-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.vote-btn.bearish-btn.active .vote-count,
+.vote-btn.bearish-btn:hover:not(.voted) .vote-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* ===== اصلاح حالت تاریک ===== */
+.dark-theme {
+    --news-bg: #0f172a;
+    --news-card-bg: #1e293b;
+    --news-text: #f1f5f9;
+    --news-text-light: #cbd5e1;
+    --news-border: #334155;
+}
+
+/* اصلاح margin در حالت تاریک */
+.dark-theme .news-archive-page {
+    padding-top: 40px;
+}
+
+.dark-theme .site-footer {
+    margin-top: 0 !important;
+}
+
+/* اصلاح رنگ عناوین و تاریخ در حالت تاریک */
+.dark-theme .news-title a {
+    color: #f1f5f9;
+}
+
+.dark-theme .news-meta .meta-item,
+.dark-theme .news-time {
+    color: #cbd5e1;
+}
+
+.dark-theme .news-excerpt {
+    color: #94a3b8;
+}
+
+.dark-theme .page-main-title {
+    background: linear-gradient(135deg, #a78bfa, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dark-theme .category-badge {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .news-card {
+    border-color: #334155;
+}
+
+.dark-theme .news-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== نوتیفیکیشن‌های رای‌گیری ===== */
+.vote-notification {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: white;
+    color: #1e293b;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.vote-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.vote-notification.success {
+    background: linear-gradient(135deg, #10b981, #16c784);
+    color: white;
+}
+
+.vote-notification.warning {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    color: white;
+}
+
+.vote-notification.error {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    color: white;
+}
+
+.vote-notification svg {
+    flex-shrink: 0;
+}
+
+@media (max-width: 1200px) {
+    .news-container {
+        grid-template-columns: 1fr 300px;
+        gap: 32px;
+    }
+    
+    .news-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .news-container {
+        grid-template-columns: 1fr;
+        padding: 0 24px;
+    }
+    
+    .news-sidebar {
+        grid-column: 1;
+        position: static;
+        order: -1;
+    }
+    
+    .news-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-main-title {
+        font-size: 32px;
+    }
+    
+    .news-toolbar {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .toolbar-left, .toolbar-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .news-sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-container {
+        padding: 0 16px;
+    }
+    
+    .page-main-title {
+        font-size: 28px;
+    }
+    
+    .categories-scroll {
+        gap: 8px;
+    }
+    
+    .category-tab {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    .news-content {
+        padding: 20px;
+    }
+    
+    .news-sidebar {
+        grid-template-columns: 1fr;
+    }
+}

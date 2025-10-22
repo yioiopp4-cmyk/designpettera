@@ -1,0 +1,921 @@
+/**
+ * استایل‌های پیشرفته و زیبا - شبیه arzdigital.com
+ * Enhanced Beautiful Styles
+ */
+
+/* ==========================================================================
+   Price Ticker - تیکر قیمت
+   ========================================================================== */
+.price-ticker {
+    background: linear-gradient(135deg, #1a1f35 0%, #2d3548 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.ticker-items {
+    display: flex;
+    gap: 40px;
+    animation: ticker-scroll 30s linear infinite;
+    will-change: transform;
+}
+
+.ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+    padding: 0 20px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ticker-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.ticker-name {
+    font-weight: 600;
+}
+
+.ticker-price {
+    color: #f0b90b;
+}
+
+.ticker-change {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ticker-change.positive {
+    background: rgba(14, 203, 129, 0.2);
+    color: #0ecb81;
+}
+
+.ticker-change.negative {
+    background: rgba(246, 70, 93, 0.2);
+    color: #f6465d;
+}
+
+.ticker-loader {
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0 20px;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ==========================================================================
+   Enhanced Header - هدر بهبود یافته
+   ========================================================================== */
+.site-header {
+    background: linear-gradient(135deg, #0f1419 0%, #1c2938 100%);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 16px 0;
+    transition: all 0.3s ease;
+}
+
+.site-header.scrolled {
+    padding: 12px 0;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Logo Enhanced */
+.site-logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.site-logo .logo-icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.site-logo a:hover .logo-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.site-logo .logo-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Navigation Enhanced */
+.site-navigation {
+    flex: 1;
+}
+
+.main-menu {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu li {
+    position: relative;
+}
+
+.main-menu a {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 8px;
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    z-index: -1;
+}
+
+.main-menu a:hover,
+.main-menu .current-menu-item a {
+    color: #ffffff;
+}
+
+.main-menu a:hover::before,
+.main-menu .current-menu-item a::before {
+    opacity: 1;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Search Box Enhanced */
+.search-box {
+    position: relative;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 6px 12px 6px 20px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.search-form:focus-within {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.search-field {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: var(--font-family);
+    font-size: 14px;
+    padding: 4px 8px;
+    width: 200px;
+    transition: width 0.3s ease;
+}
+
+.search-field:focus {
+    outline: none;
+    width: 250px;
+}
+
+.search-field::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.search-button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+}
+
+.search-button:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.2);
+}
+
+/* Hamburger Menu */
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ==========================================================================
+   Enhanced Footer - فوتر بهبود یافته
+   ========================================================================== */
+.site-footer {
+    background: linear-gradient(135deg, #0f1419 0%, #1c2938 100%);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 60px 0 0;
+    margin-top: 80px;
+    position: relative;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 60px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-about {
+    max-width: 400px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.footer-logo h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.footer-description {
+    line-height: 1.8;
+    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-menu li {
+    margin-bottom: 12px;
+}
+
+.footer-menu a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    padding-right: 12px;
+}
+
+.footer-menu a::before {
+    content: '◀';
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+    font-size: 10px;
+}
+
+.footer-menu a:hover {
+    color: #667eea;
+    padding-right: 20px;
+}
+
+.footer-menu a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-bottom {
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-bottom-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.copyright {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.copyright a {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.footer-note {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   Back to Top Button - دکمه بازگشت به بالا
+   ========================================================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+    z-index: 998;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.back-to-top.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+}
+
+.back-to-top:active {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Responsive Design - طراحی ریسپانسیو
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-widgets {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .search-field {
+        width: 150px;
+    }
+    
+    .search-field:focus {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .price-ticker {
+        padding: 8px 0;
+    }
+    
+    .ticker-item {
+        font-size: 12px;
+        gap: 8px;
+        padding: 0 12px;
+    }
+    
+    .ticker-logo {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .site-header {
+        padding: 12px 0;
+    }
+    
+    .site-header .container {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    
+    .site-navigation {
+        display: none;
+        width: 100%;
+        order: 3;
+        margin-top: 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 8px;
+        backdrop-filter: blur(10px);
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .site-navigation.active {
+        display: block;
+    }
+    
+    .main-menu {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .main-menu li {
+        width: 100%;
+    }
+    
+    .main-menu a {
+        padding: 14px 20px;
+        background: rgba(255, 255, 255, 0.08);
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    .main-menu a:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .search-box {
+        flex: 1;
+        max-width: 250px;
+    }
+    
+    .search-form {
+        width: 100%;
+    }
+    
+    .search-field {
+        width: 100px;
+    }
+    
+    .search-field:focus {
+        width: 100%;
+    }
+    
+    /* Hero Section Mobile */
+    .hero-section {
+        padding: 60px 0 50px;
+        margin-bottom: 40px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+        margin-bottom: 32px;
+    }
+    
+    .hero-stats {
+        gap: 16px;
+    }
+    
+    .stat-card {
+        padding: 20px 24px;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .stat-icon {
+        font-size: 36px;
+    }
+    
+    .stat-value {
+        font-size: 24px;
+    }
+    
+    /* Footer Mobile */
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-widgets {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Back to Top Mobile */
+    .back-to-top {
+        width: 48px;
+        height: 48px;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    /* Table Responsive */
+    .crypto-table-modern {
+        border-radius: 16px;
+    }
+    
+    .table-row {
+        padding: 16px 20px;
+    }
+    
+    /* Cards Mobile */
+    .news-card,
+    .trending-card {
+        border-radius: 16px;
+    }
+    
+    .news-image {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header */
+    .site-logo a {
+        font-size: 18px;
+    }
+    
+    .site-logo .logo-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .search-field {
+        width: 80px;
+        font-size: 13px;
+    }
+    
+    /* Hero */
+    .hero-section {
+        padding: 50px 0 40px;
+    }
+    
+    .hero-title {
+        font-size: 26px;
+        letter-spacing: -0.5px;
+    }
+    
+    .hero-subtitle {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+    
+    .stat-card {
+        padding: 16px 20px;
+        gap: 12px;
+    }
+    
+    .stat-icon {
+        font-size: 32px;
+    }
+    
+    .stat-label {
+        font-size: 13px;
+    }
+    
+    .stat-value {
+        font-size: 20px;
+    }
+    
+    .stat-value small {
+        font-size: 14px;
+    }
+    
+    /* Sections */
+    .top-cryptos-section,
+    .trending-section,
+    .news-section {
+        padding: 40px 0;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+    }
+    
+    .view-all-btn {
+        font-size: 14px;
+    }
+    
+    /* Cards */
+    .trending-card {
+        padding: 20px;
+    }
+    
+    .trending-logo {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .trending-name {
+        font-size: 15px;
+    }
+    
+    .news-image {
+        height: 160px;
+    }
+    
+    .news-content {
+        padding: 20px;
+    }
+    
+    .news-title {
+        font-size: 16px;
+    }
+    
+    .news-meta {
+        font-size: 12px;
+    }
+    
+    /* Footer */
+    .site-footer {
+        padding: 40px 0 0;
+        margin-top: 60px;
+    }
+    
+    .footer-top {
+        padding-bottom: 40px;
+    }
+    
+    .footer-about {
+        max-width: 100%;
+    }
+    
+    .footer-logo h3 {
+        font-size: 20px;
+    }
+    
+    .footer-description {
+        font-size: 14px;
+    }
+    
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-icon {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .footer-title {
+        font-size: 16px;
+    }
+    
+    .footer-menu {
+        font-size: 14px;
+    }
+    
+    .footer-bottom {
+        padding: 20px 0;
+    }
+    
+    .copyright,
+    .footer-note {
+        font-size: 12px;
+    }
+    
+    /* Back to Top */
+    .back-to-top {
+        width: 44px;
+        height: 44px;
+        bottom: 16px;
+        left: 16px;
+    }
+    
+    /* Ticker */
+    .ticker-item {
+        font-size: 11px;
+        gap: 6px;
+        padding: 0 10px;
+    }
+    
+    .ticker-logo {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .ticker-price {
+        font-size: 11px;
+    }
+    
+    .ticker-change {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+
+/* ==========================================================================
+   Smooth Animations - انیمیشن‌های نرم
+   ========================================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideInRight {
+    animation: slideInRight 0.6s ease-out;
+}
+
+/* Stagger Animation */
+.stagger-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }

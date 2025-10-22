@@ -1,0 +1,895 @@
+/**
+ * CoinGecko Style - طراحی نوآورانه و مدرن
+ * 
+ * @package CryptoSekhyab
+ */
+
+/* ========== متغیرهای CSS - قابل تغییر از ادمین ========== */
+:root {
+    /* رنگ‌های اصلی - قابل تغییر */
+    --cg-primary: #8dc63f;
+    --cg-primary-dark: #78a835;
+    --cg-secondary: #5e72e4;
+    --cg-dark: #0d1421;
+    --cg-darker: #050911;
+    
+    /* رنگ‌های متنی */
+    --cg-text-primary: #1e293b;
+    --cg-text-secondary: #64748b;
+    --cg-text-white: #ffffff;
+    
+    /* رنگ‌های پس‌زمینه */
+    --cg-bg-primary: #ffffff;
+    --cg-bg-secondary: #f8fafc;
+    --cg-bg-dark: #0f172a;
+    
+    /* رنگ‌های تغییرات */
+    --cg-green: #16c784;
+    --cg-red: #ea3943;
+    
+    /* سایه‌ها */
+    --cg-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --cg-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --cg-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --cg-shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
+    
+    /* Gradients */
+    --cg-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --cg-gradient-success: linear-gradient(135deg, #16c784 0%, #0ecb81 100%);
+    --cg-gradient-danger: linear-gradient(135deg, #ea3943 0%, #f6465d 100%);
+    --cg-gradient-dark: linear-gradient(135deg, #0d1421 0%, #1a2332 100%);
+}
+
+/* ========== هدر مدرن CoinGecko ========== */
+.cg-header {
+    background: var(--cg-bg-primary);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--cg-shadow-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cg-header.scrolled {
+    box-shadow: var(--cg-shadow-md);
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.cg-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.cg-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.cg-logo:hover {
+    transform: scale(1.05);
+}
+
+.cg-logo-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--cg-gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.cg-logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    background: var(--cg-gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cg-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.cg-nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 4px;
+}
+
+.cg-nav-item a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--cg-text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cg-nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: var(--cg-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.cg-nav-item a:hover {
+    color: var(--cg-primary);
+    background: rgba(141, 198, 63, 0.1);
+}
+
+.cg-nav-item a:hover::after {
+    transform: scaleX(1);
+}
+
+.cg-search-box {
+    position: relative;
+}
+
+.cg-search-input {
+    width: 280px;
+    padding: 12px 16px 12px 44px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: var(--cg-bg-secondary);
+}
+
+.cg-search-input:focus {
+    outline: none;
+    border-color: var(--cg-primary);
+    box-shadow: 0 0 0 4px rgba(141, 198, 63, 0.1);
+    background: white;
+}
+
+.cg-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cg-text-secondary);
+    font-size: 18px;
+}
+
+/* ========== صفحه اصلی - Hero Section ========== */
+.cg-hero {
+    background: var(--cg-gradient-dark);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cg-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(141, 198, 63, 0.1) 0%, transparent 50%);
+    animation: heroMove 20s ease-in-out infinite;
+}
+
+@keyframes heroMove {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(50px, 30px); }
+}
+
+.cg-hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.cg-hero-title {
+    font-size: 56px;
+    font-weight: 900;
+    color: white;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+    animation: fadeInUp 0.8s ease;
+}
+
+.cg-hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 32px 0;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.cg-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.cg-stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 28px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeInUp 0.8s ease both;
+}
+
+.cg-stat-card:nth-child(1) { animation-delay: 0.3s; }
+.cg-stat-card:nth-child(2) { animation-delay: 0.4s; }
+.cg-stat-card:nth-child(3) { animation-delay: 0.5s; }
+.cg-stat-card:nth-child(4) { animation-delay: 0.6s; }
+
+.cg-stat-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cg-stat-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cg-stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cg-stat-change {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.cg-stat-change.positive {
+    color: var(--cg-green);
+    background: rgba(22, 199, 132, 0.1);
+}
+
+.cg-stat-change.negative {
+    color: var(--cg-red);
+    background: rgba(234, 57, 67, 0.1);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== جدول ارزها - CoinGecko Style ========== */
+.cg-crypto-section {
+    padding: 80px 0;
+    background: var(--cg-bg-secondary);
+}
+
+.cg-section-header {
+    max-width: 1400px;
+    margin: 0 auto 48px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cg-section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--cg-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cg-section-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--cg-gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+.cg-view-all-btn {
+    padding: 14px 28px;
+    background: var(--cg-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(141, 198, 63, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cg-view-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(141, 198, 63, 0.4);
+    background: var(--cg-primary-dark);
+}
+
+.cg-crypto-table-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.cg-crypto-table {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--cg-shadow-md);
+    overflow: hidden;
+}
+
+.cg-table-header {
+    display: grid;
+    grid-template-columns: 60px 2.5fr 1.2fr 1fr 1fr 1.5fr 1.2fr 120px;
+    gap: 16px;
+    padding: 20px 28px;
+    background: var(--cg-bg-secondary);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--cg-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.cg-table-row {
+    display: grid;
+    grid-template-columns: 60px 2.5fr 1.2fr 1fr 1fr 1.5fr 1.2fr 120px;
+    gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    align-items: center;
+}
+
+.cg-table-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--cg-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.cg-table-row:hover {
+    background: linear-gradient(90deg, rgba(141, 198, 63, 0.05) 0%, transparent 100%);
+    transform: translateX(4px);
+}
+
+.cg-table-row:hover::before {
+    transform: scaleX(1);
+}
+
+.cg-table-row:hover .cg-crypto-name {
+    color: var(--cg-primary);
+}
+
+.cg-rank {
+    font-weight: 700;
+    color: var(--cg-text-secondary);
+    font-size: 15px;
+}
+
+.cg-crypto-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cg-crypto-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cg-crypto-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cg-crypto-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--cg-text-primary);
+    transition: color 0.3s ease;
+}
+
+.cg-crypto-symbol {
+    font-size: 13px;
+    color: var(--cg-text-secondary);
+    text-transform: uppercase;
+}
+
+.cg-price {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--cg-text-primary);
+}
+
+.cg-change {
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cg-change.positive {
+    color: var(--cg-green);
+}
+
+.cg-change.negative {
+    color: var(--cg-red);
+}
+
+.cg-volume,
+.cg-market-cap {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--cg-text-primary);
+}
+
+.cg-sparkline {
+    width: 100%;
+    height: 50px;
+}
+
+/* ========== Mini Chart ========== */
+.cg-mini-chart {
+    height: 50px;
+    position: relative;
+}
+
+.cg-mini-chart.positive {
+    color: var(--cg-green);
+}
+
+.cg-mini-chart.negative {
+    color: var(--cg-red);
+}
+
+/* ========== بخش ارزهای ترند ========== */
+.cg-trending-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.cg-trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.cg-trending-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: var(--cg-shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.cg-trending-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 50%, #ffd140 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.cg-trending-card:hover::before {
+    transform: scaleX(1);
+}
+
+.cg-trending-card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--cg-shadow-xl);
+    border-color: var(--cg-primary);
+}
+
+.cg-trending-rank {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.cg-trending-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease;
+}
+
+.cg-trending-card:hover .cg-trending-logo {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.cg-trending-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--cg-text-primary);
+    margin: 0 0 8px 0;
+    transition: color 0.3s ease;
+}
+
+.cg-trending-card:hover .cg-trending-name {
+    color: var(--cg-primary);
+}
+
+.cg-trending-symbol {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cg-text-secondary);
+    text-transform: uppercase;
+    padding: 6px 16px;
+    background: var(--cg-bg-secondary);
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* ========== بخش ارزهای ترند ========== */
+.cg-trending-section {
+    background: var(--cg-bg-secondary);
+}
+
+.cg-trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.cg-trending-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--cg-shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cg-trending-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.cg-trending-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--cg-shadow-lg);
+}
+
+.cg-trending-card:hover::before {
+    transform: scaleX(1);
+}
+
+.cg-trending-rank {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.cg-trending-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.cg-trending-card:hover .cg-trending-logo {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.cg-trending-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cg-text-primary);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.cg-trending-card:hover .cg-trending-name {
+    color: var(--cg-primary);
+}
+
+.cg-trending-symbol {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cg-text-secondary);
+    text-transform: uppercase;
+}
+
+/* ========== بخش اخبار ========== */
+.cg-news-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.cg-news-grid {
+    max-width: 1400px;
+    margin: 48px auto 0;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 32px;
+}
+
+.cg-news-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--cg-shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+}
+
+.cg-news-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--cg-shadow-xl);
+}
+
+.cg-news-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.cg-news-card:hover .cg-news-image {
+    transform: scale(1.1);
+}
+
+.cg-news-content {
+    padding: 24px;
+}
+
+.cg-news-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--cg-text-secondary);
+}
+
+.cg-news-category {
+    padding: 4px 12px;
+    background: rgba(141, 198, 63, 0.1);
+    color: var(--cg-primary);
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.cg-news-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cg-text-primary);
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.cg-news-excerpt {
+    font-size: 15px;
+    color: var(--cg-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 1200px) {
+    .cg-table-header,
+    .cg-table-row {
+        grid-template-columns: 50px 2fr 1fr 1fr 1fr 1fr 100px;
+        font-size: 12px;
+        gap: 12px;
+        padding: 16px 20px;
+    }
+    
+    .cg-volume {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .cg-hero-title {
+        font-size: 36px;
+    }
+    
+    .cg-hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .cg-nav-menu {
+        display: none;
+    }
+    
+    .cg-search-input {
+        width: 200px;
+    }
+    
+    .cg-table-header {
+        display: none;
+    }
+    
+    .cg-table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px;
+    }
+    
+    .cg-trending-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .cg-trending-card {
+        padding: 16px;
+    }
+    
+    .cg-trending-logo {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .cg-trending-name {
+        font-size: 14px;
+    }
+    
+    .cg-news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== انیمیشن‌های خاص ========== */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+    animation: slideInRight 0.6s ease both;
+}
+
+/* ========== Loading States ========== */
+.cg-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
