@@ -3,6 +3,10 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    if (window.__featuredSliderInitialized) {
+        return; // جلوگیری از دوبار مقداردهی
+    }
+    window.__featuredSliderInitialized = true;
     
     const slider = document.querySelector('.featured-slider');
     const newsList = document.querySelector('.featured-news-list');

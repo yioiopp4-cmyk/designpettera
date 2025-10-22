@@ -101,7 +101,7 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
                         <div class="featured-slider">
                             <?php
                             $featured_slides = get_posts(array(
-                                'posts_per_page' => 3,
+                                'posts_per_page' => 10,
                                 'post_status' => 'publish',
                                 'orderby' => 'date',
                                 'order' => 'DESC',
@@ -138,7 +138,7 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
                             ?>
                         </div>
                         <?php wp_reset_postdata(); ?>
-                        <div class="featured-news-list <?php echo $slides_count > 3 ? 'multi-column' : ''; ?>" data-count="<?php echo $slides_count; ?>">
+                        <div class="featured-news-list <?php echo $slides_count > 3 ? 'auto-scroll' : ''; ?>" data-count="<?php echo $slides_count; ?>">
                             <?php 
                             $news_index = 0;
                             foreach ($featured_slides as $news_item) : 
@@ -1194,6 +1194,7 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     display: grid;
     grid-template-columns: 2.4fr 1fr;
     gap: 16px;
+    align-items: start; /* جلوگیری از کشیده شدن کارت سمت راست و خالی ماندن پایین */
 }
 
 /* اسلایدر اخبار - IMPROVED */
@@ -1268,25 +1269,27 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
     display: flex;
     flex-direction: column;
     gap: 6px;
-    max-height: none;
-    overflow: visible;
-    min-height: auto;
+    max-height: 132px; /* حدودا 3 عنوان قابل مشاهده */
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding-right: 2px;
 }
 
-/* حالت تک ستونی (1-3 خبر) */
+/* هنگام فعال بودن اسکرول خودکار، هرگونه انیمیشن قبلی غیرفعال شود */
+.featured-news-list.auto-scroll {
+    animation: none !important;
+}
+
+/* حالت تک ستونی */
 .featured-news-list:not(.multi-column) {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-/* حالت دو ستونی (4-6 خبر) */
-.featured-news-list.multi-column {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px 10px;
-    grid-auto-rows: min-content;
-}
+/* حالت چندستونی دیگر استفاده نمی‌شود؛ فهرست به‌صورت عمودی اسکرول می‌شود */
+.featured-news-list.multi-column { display: block; }
 
 /* حالت خاص برای 5 خبر - 3 تا یک طرف، 2 تا طرف دیگر */
 .featured-news-list.multi-column[data-count="5"] {
@@ -1352,9 +1355,15 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
 }
 
 /* ارزهای ترند - آیکن‌های کوچک‌تر */
+/* ارزهای ترند باید کل ارتفاع ستون را پر کنند */
+.trend-values { 
+    display: flex; 
+    flex-direction: column; 
+}
+
 .trend-values .card-body {
     display: grid;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(6, auto);
     gap: 4px;
 }
 
@@ -1916,6 +1925,10 @@ $active_cryptos = isset($global_data['active_cryptocurrencies']) ? $global_data[
 <script>
 // تب‌های فیلتر جدول ارزها
 document.addEventListener('DOMContentLoaded', function() {
+    if (window.__featuredSliderInitialized) {
+        return;
+    }
+    window.__featuredSliderInitialized = true;
     const tabs = document.querySelectorAll('.tab-btn');
     const tableRows = document.querySelectorAll('.crypto-table tbody tr');
     
@@ -2020,9 +2033,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // اسلایدر اخبار با همگام‌سازی عنوان‌ها
+    // اسلایدر اخبار با همگام‌سازی عنوان‌ها و اسکرول عمودی عناوین
     const slides = document.querySelectorAll('.featured-slide');
     const newsItems = document.querySelectorAll('.featured-news-list .news-item');
+    const newsListContainer = document.querySelector('.featured-news-list');
     let currentSlide = 0;
     let sliderInterval;
     
@@ -2042,6 +2056,12 @@ document.addEventListener('DOMContentLoaded', function() {
             newsItems[currentSlide].classList.add('active-news');
         }
         
+        // اسکرول نرم عناوین به‌سمت آیتم فعال
+        if (newsListContainer && newsItems[currentSlide]) {
+            const targetTop = currentSlide === 0 ? 0 : newsItems[currentSlide].offsetTop - 4;
+            newsListContainer.scrollTo({ top: targetTop, behavior: 'smooth' });
+        }
+
         // ریست کردن انیمیشن progress bar
         const progressFill = slides[currentSlide]?.querySelector('.slide-progress-fill');
         if (progressFill) {
