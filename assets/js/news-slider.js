@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentSlide = 0;
     let intervalId = null;
+    let isUserInteracting = false;
+    let userInteractTimer = null;
 
     function getRelativeTop(element, container) {
         let offset = 0;
@@ -35,20 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function ensureVisible(container, item) {
         if (!container || !item) return;
-        const itemTop = getRelativeTop(item, container);
-        const itemBottom = itemTop + item.offsetHeight;
-        const viewTop = container.scrollTop;
-        const viewBottom = viewTop + container.clientHeight;
-
-        let targetTop = null;
-        if (itemTop < viewTop) {
-            targetTop = Math.max(0, itemTop - 6);
-        } else if (itemBottom > viewBottom) {
-            targetTop = Math.max(0, itemBottom - container.clientHeight + 6);
-        }
-        if (targetTop !== null) {
-            container.scrollTo({ top: targetTop, behavior: 'smooth' });
-        }
+        // اگر کاربر در حال تعامل با لیست است، دخالت نکن
+        if (isUserInteracting) return;
+        // هدف: آیتم فعال را تقریبا وسط ظرف نمایش بده
+        const cRect = container.getBoundingClientRect();
+        const iRect = item.getBoundingClientRect();
+        const deltaFromTop = iRect.top - cRect.top;
+        const targetTop = container.scrollTop + deltaFromTop - Math.max(0, (container.clientHeight - item.clientHeight) / 2);
+        container.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
     }
 
     function showSlide(nextIndex) {
@@ -103,7 +99,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // اجازه اسکرول طبیعی با چرخ‌ماوس روی ظرف عناوین؛ تایمر قطع نمی‌شود
+    // اجازه اسکرول طبیعی با چرخ‌ماوس/لمس روی ظرف عناوین؛ تایمر قطع نمی‌شود
+    const markInteracting = () => {
+        isUserInteracting = true;
+        if (userInteractTimer) clearTimeout(userInteractTimer);
+        userInteractTimer = setTimeout(() => { isUserInteracting = false; }, 600);
+    };
+    ['wheel','touchstart','touchmove','pointerdown','pointermove'].forEach(evt => {
+        newsList.addEventListener(evt, markInteracting, { passive: true });
+    });
 
     // دیگر در حالت hover متوقف نمی‌کنیم تا اسلایدر هرگز گیر نکند
 
