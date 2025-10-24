@@ -512,38 +512,38 @@
   margin-top: 16px;
 }
 
-/* ===== Squares for stats + aligned bottoms ===== */
-/* Align all three bottom-section columns to equal height */
+/* ===== Squares for stats + aligned bottoms (without enlarging others) ===== */
+/* Keep row items at natural height for gainers/losers */
 .bottom-section-grid {
-  align-items: stretch !important;
+  align-items: start !important;
 }
 
 /* Ensure each column fills the grid track height */
 .top-losers,
-.top-gainers,
-.stats-grid-container {
-  height: 100% !important;
-}
+.top-gainers { height: auto !important; }
+.stats-grid-container { height: auto !important; }
+/* Stretch ONLY the stats column to match tallest column */
+.stats-grid-container { align-self: stretch !important; }
 
 /* Build a 2x2 grid that stretches to full column height */
 .stats-grid-container {
   grid-template-columns: repeat(2, 1fr) !important;
-  grid-template-rows: repeat(2, 1fr) !important;
   gap: 12px !important;
-  align-content: stretch !important;
-  align-items: stretch !important;
-  justify-items: stretch !important;
-  height: 100% !important;
+  align-content: space-between !important; /* top row at top, bottom row at bottom */
+  align-items: start !important;
+  justify-items: center !important; /* center squares horizontally so width cap works */
+  align-self: stretch !important; /* fill grid row height without enlarging others */
 }
 
 /* Make the four stat tiles perfect squares and uniform */
+/* Make four tiles visually square-ish without forcing row growth */
 .stats-grid-container .stat-box,
 .stats-grid-container .fear-greed-box,
 .stats-grid-container .market-cap-box,
 .stats-grid-container .tether-box,
 .stats-grid-container .dominance-box {
   aspect-ratio: 1 / 1 !important;
-  min-height: 0 !important;
+  width: min(160px, calc((100% - 12px) / 2)) !important; /* keep small enough */
   height: auto !important;
   display: flex !important;
   flex-direction: column !important;
@@ -555,7 +555,6 @@
 .top-gainers {
   display: flex !important;
   flex-direction: column !important;
-  height: 100% !important;
 }
 .top-losers .card-body,
 .top-gainers .card-body {
@@ -570,5 +569,7 @@
   .stats-grid-container .tether-box,
   .stats-grid-container .dominance-box {
     aspect-ratio: auto !important;
+    min-height: 100px !important;
+    max-height: none !important;
   }
 }
