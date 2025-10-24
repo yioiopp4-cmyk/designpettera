@@ -590,3 +590,30 @@
     max-height: none !important;
   }
 }
+
+/* ===== Post-fix overrides for equal sizing and visibility ===== */
+/* Ensure both columns inside stats grid are equal width */
+.stats-grid-container {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+/* Make every stat tile fill its grid cell width equally */
+.stats-grid-container > .stat-box { width: 100% !important; box-sizing: border-box !important; }
+
+/* Fear & Greed gauge bars width clamped and centered so bars always show */
+.stats-grid-container .fear-greed-box .gauge-bars {
+  width: clamp(140px, 80%, 180px) !important;
+  margin: 0 auto 8px auto !important;
+}
+
+/* Dominance icons: always visible and sized properly */
+.stats-grid-container .dominance-box .dominance-item { justify-content: flex-start !important; }
+.stats-grid-container .dominance-box .dominance-item .coin-icon-mini,
+.stats-grid-container .dominance-box .dominance-item img {
+  display: inline-block !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  margin-left: 6px !important;
+}
