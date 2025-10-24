@@ -530,9 +530,10 @@
   grid-template-columns: repeat(2, 1fr) !important;
   gap: 12px !important;
   align-content: space-between !important; /* top row at top, bottom row at bottom */
-  align-items: start !important;
-  justify-items: center !important; /* center squares horizontally so width cap works */
+  align-items: stretch !important;
+  justify-items: stretch !important; /* tiles fill full cell width */
   align-self: stretch !important; /* fill grid row height without enlarging others */
+  grid-template-rows: 1fr 1fr !important; /* two equal rows to align bottoms */
 }
 
 /* Make the four stat tiles perfect squares and uniform */
@@ -542,12 +543,29 @@
 .stats-grid-container .market-cap-box,
 .stats-grid-container .tether-box,
 .stats-grid-container .dominance-box {
-  aspect-ratio: 1 / 1 !important;
-  width: min(160px, calc((100% - 12px) / 2)) !important; /* keep small enough */
-  height: auto !important;
+  aspect-ratio: auto !important; /* no square forcing */
+  width: 100% !important;
+  min-height: 140px !important;
+  height: 100% !important; /* fill grid cell */
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+/* Prevent title overlap and ensure visible white card background */
+.stats-grid-container .stat-box h3,
+.stats-grid-container .stat-box h4 {
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 0 8px 0 !important;
+}
+.stats-grid-container .stat-box {
+  background: #fff !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05) !important;
 }
 
 /* Make gainers/losers cards truly fill their column height */
