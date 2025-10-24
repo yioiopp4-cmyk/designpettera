@@ -515,7 +515,7 @@
 /* ===== Squares for stats + aligned bottoms (without enlarging others) ===== */
 /* Keep row items at natural height for gainers/losers */
 .bottom-section-grid {
-  align-items: start !important;
+  align-items: stretch !important; /* match tallest column height */
 }
 
 /* Ensure each column fills the grid track height */
@@ -532,8 +532,8 @@
   align-content: space-between !important; /* top row at top, bottom row at bottom */
   align-items: stretch !important;
   justify-items: stretch !important; /* tiles fill full cell width */
-  align-self: stretch !important; /* fill grid row height without enlarging others */
-  grid-template-rows: 1fr 1fr !important; /* two equal rows to align bottoms */
+  align-self: stretch !important; /* fill grid row height */
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important; /* two equal rows that can grow */
 }
 
 /* Make the four stat tiles perfect squares and uniform */
@@ -543,15 +543,13 @@
 .stats-grid-container .market-cap-box,
 .stats-grid-container .tether-box,
 .stats-grid-container .dominance-box {
-  aspect-ratio: auto !important; /* no square forcing */
   width: 100% !important;
-  min-height: 140px !important;
-  height: 100% !important; /* fill grid cell */
+  height: 100% !important; /* fill its grid cell height */
+  min-height: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   box-sizing: border-box !important;
-  overflow: visible !important;
 }
 
 /* Prevent title overlap and ensure visible white card background */
@@ -564,8 +562,9 @@
 .stats-grid-container .stat-box {
   background: #fff !important;
   border-radius: 12px !important;
-  padding: 12px !important;
+  padding: 14px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,.05) !important;
+  display: flex !important;
 }
 
 /* Make gainers/losers cards truly fill their column height */
@@ -576,7 +575,7 @@
 }
 .top-losers .card-body,
 .top-gainers .card-body {
-  flex: 1 !important;
+  flex: 0 0 auto !important; /* keep natural content height; avoid stretching */
 }
 
 /* On small screens, disable forced squares to avoid excessive height */
